@@ -31,7 +31,8 @@ class GameLobbyTest {
         softly.assertThat(gameLobby.getPlayableTownsWithHeroesList().size()).isEqualTo(TOWNS_NUMBER_NO_DLC);
         for (Map.Entry<Town, List<Hero>> entry : gameLobby.getPlayableTownsWithHeroesList().entrySet()) {
             softly.assertThat(entry.getKey().getTownName()).isEqualTo(alphabeticalTowns.get(iterator++));
-            softly.assertThat(entry.getValue().size()).isEqualTo(HEROES_NUMBER_BY_TOWN.get(entry.getKey().getTownName()));
+            softly.assertThat(entry.getValue().size())
+                    .isEqualTo(HEROES_NUMBER_BY_TOWN.get(entry.getKey().getTownName()));
         }
         softly.assertAll();
     }
@@ -48,7 +49,8 @@ class GameLobbyTest {
         softly.assertThat(gameLobby.getPlayableTownsWithHeroesList().size()).isEqualTo(TOWNS_NUMBER_WITH_DLC);
         for (Map.Entry<Town, List<Hero>> entry : gameLobby.getPlayableTownsWithHeroesList().entrySet()) {
             softly.assertThat(entry.getKey().getTownName()).isEqualTo(alphabeticalTowns.get(iterator++));
-            softly.assertThat(entry.getValue().size()).isEqualTo(HEROES_NUMBER_BY_TOWN.get(entry.getKey().getTownName()));
+            softly.assertThat(entry.getValue().size())
+                    .isEqualTo(HEROES_NUMBER_BY_TOWN.get(entry.getKey().getTownName()));
         }
         softly.assertAll();
     }
@@ -83,7 +85,8 @@ class GameLobbyTest {
         softly.assertThat(gameLobby.getPlayableTownsWithHeroesList().size()).isEqualTo(TOWNS_NUMBER_NO_DLC);
         for (Map.Entry<Town, List<Hero>> entry : gameLobby.getPlayableTownsWithHeroesList().entrySet()) {
             softly.assertThat(entry.getKey().getTownName()).isEqualTo(alphabeticalTowns.get(iterator++));
-            softly.assertThat(entry.getValue().size()).isEqualTo(HEROES_NUMBER_BY_TOWN.get(entry.getKey().getTownName()));
+            softly.assertThat(entry.getValue().size())
+                    .isEqualTo(HEROES_NUMBER_BY_TOWN.get(entry.getKey().getTownName()));
         }
         softly.assertAll();
     }
@@ -107,8 +110,8 @@ class GameLobbyTest {
 
     @Test
     void shouldTrowNoSuchElementExceptionIfHeroNotFound() {
-        Exception exception = assertThrows(NoSuchElementException.class, () ->
-                gameLobby.selectHeroByName(new Town("Castle", List.of()), "nonExisted"));
+        Exception exception = assertThrows(NoSuchElementException.class,
+                () -> gameLobby.selectHeroByName(new Town("Castle", List.of()), "nonExisted"));
 
         String expectedMessage = HERO_NOT_FOUND + "nonExisted";
         String actualMessage = exception.getMessage();
@@ -125,7 +128,6 @@ class GameLobbyTest {
         assertEquals(existedHero, gameLobby.selectHeroByName(town, tyris));
         assertFalse(gameLobby.getHeroesFromTown(town).contains(existedHero));
     }
-
 
     private List<String> getAlphabeticalTowns() {
         List<String> alphabeticalTowns = new ArrayList<>(TOWNS);
